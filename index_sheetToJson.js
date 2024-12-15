@@ -1,4 +1,4 @@
-// Kullanıcıdan alınan linki işleme
+// Process the link provided by the user
 function convertToCsvLink(sheetUrl) {
   const regex = /https:\/\/docs\.google\.com\/spreadsheets\/d\/([a-zA-Z0-9-_]+)\/.*gid=([0-9]+)/;
   const match = sheetUrl.match(regex);
@@ -12,7 +12,7 @@ function convertToCsvLink(sheetUrl) {
   }
 }
 
-// Google Sheets'ten CSV verisini alıp JSON formatına çevirme
+// Fetch CSV data from Google Sheets and convert it to JSON
 async function fetchGoogleSheetData(sheetUrl) {
   const response = await fetch(sheetUrl);
   if (!response.ok) {
@@ -20,15 +20,15 @@ async function fetchGoogleSheetData(sheetUrl) {
   }
   const csvData = await response.text();
 
-  // CSV'yi JSON formatına dönüştür
+  // Convert CSV to JSON format
   const rows = csvData.split('\n');
   return rows.slice(1).map(row => {
-    const [Türkisch, Deutsch] = row.split(',');
-    return { Türkisch: Türkisch?.trim(), Deutsch: Deutsch?.trim() };
+    const [ColumnA, ColumnB] = row.split(',');
+    return { ColumnA: ColumnA?.trim(), ColumnB: ColumnB?.trim() };
   });
 }
 
-// Listeyi karıştır
+// Shuffle the array
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -36,29 +36,29 @@ function shuffleArray(array) {
   }
 }
 
-// Quiz oluştur
+// Generate Quiz 
 function generateQuiz(inputList) {
   const quizData = [];
 
   inputList.forEach((map) => {
-    const question = map["Türkisch"];
-    const correctAnswer = map["Deutsch"];
+    const question = map["ColumnA"];
+    const correctAnswer = map["ColumnB"];
 
-    // Yanlış cevapları seçmek için kullanılan set
+    // Set used to select incorrect answers
     const optionsSet = new Set();
     optionsSet.add(correctAnswer);
 
-    // Rastgele yanlış seçenekler seçiliyor
+    // Random incorrect options are being selected
     while (optionsSet.size < 4) {
       const randomEntry = inputList[Math.floor(Math.random() * inputList.length)];
-      optionsSet.add(randomEntry["Deutsch"]);
+      optionsSet.add(randomEntry["ColumnB"]);
     }
 
-    // Şıkları karıştır
+    // Shuffle the options
     const options = Array.from(optionsSet);
     shuffleArray(options);
 
-    // Soru yapısını oluştur
+    // Create the question structure
     quizData.push({
       question: question,
       options: options,
@@ -69,22 +69,22 @@ function generateQuiz(inputList) {
   return quizData;
 }
 
-// Kullanıcıdan alınan verileri işleyip quiz oluştur ve sonraki sayfaya yönlendir
+// Process user input to create a quiz and redirect to the next page
 document.getElementById('generate-json').addEventListener('click', async () => {
   const sheetLink = document.getElementById('sheet-link').value;
 
   try {
-    // Google Sheets verilerini JSON'a çevir
+    // Convert Google Sheets data to JSON
     const csvLink = convertToCsvLink(sheetLink);
     const jsonData = await fetchGoogleSheetData(csvLink);
 
-    // Quiz verisini oluştur
+    // Generate quiz data
     const quizData = generateQuiz(jsonData);
 
-    // JSON verisini localStorage'a kaydet
+    // Save JSON data to localStorage
     localStorage.setItem('quizData', JSON.stringify(quizData));
 
-    // Kullanıcıyı Quiz sayfasına yönlendir
+    // Redirect the user to the Quiz page
     window.location.href = 'selectQuestion.html';
   } catch (error) {
     alert(`Hata: ${error.message}`);
