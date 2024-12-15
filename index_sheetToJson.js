@@ -1,12 +1,14 @@
 // Kullanıcıdan alınan linki işleme
 function convertToCsvLink(sheetUrl) {
-  const regex = /https:\/\/docs\.google\.com\/spreadsheets\/d\/([a-zA-Z0-9-_]+)\//;
+  const regex = /https:\/\/docs\.google\.com\/spreadsheets\/d\/([a-zA-Z0-9-_]+)\/.*gid=([0-9]+)/;
   const match = sheetUrl.match(regex);
+
   if (match) {
     const sheetId = match[1];
-    return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
+    const gid = match[2];
+    return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
   } else {
-    throw new Error('Geçersiz Google Sheets linki.');
+    throw new Error('Geçersiz Google Sheets linki. Lütfen tam linki girin (gid parametresi ile).');
   }
 }
 
@@ -22,7 +24,7 @@ async function fetchGoogleSheetData(sheetUrl) {
   const rows = csvData.split('\n');
   return rows.slice(1).map(row => {
     const [Türkisch, Deutsch] = row.split(',');
-    return { Türkisch: Türkisch.trim(), Deutsch: Deutsch.trim() };
+    return { Türkisch: Türkisch?.trim(), Deutsch: Deutsch?.trim() };
   });
 }
 
