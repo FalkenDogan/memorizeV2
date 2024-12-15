@@ -1,42 +1,42 @@
-let quizData = []; // JSON verisi buraya yüklenecek
+let quizData = []; // JSON data will be loaded here
 
-// LocalStorage'dan JSON verisini yükle
+// Load JSON data from LocalStorage
 document.addEventListener('DOMContentLoaded', () => {
-  const storedQuizData = localStorage.getItem('quizData'); // sheetToJson.js tarafından oluşturulan JSON verisi
+  const storedQuizData = localStorage.getItem('quizData'); // JSON data created by sheetToJson.js
 
   if (storedQuizData) {
     try {
-      quizData = JSON.parse(storedQuizData); // JSON verisini yükle
-      document.getElementById('questionCount').innerText = `Soru sayısı: ${quizData.length}`;
-      document.getElementById('endQuestion').max = quizData.length; // Maksimum soru sayısını belirle
+      quizData = JSON.parse(storedQuizData); // Load JSON data
+      document.getElementById('questionCount').innerText = `Number of questions: ${quizData.length}`;
+      document.getElementById('endQuestion').max = quizData.length; // Set maximum number of questions
     } catch (error) {
-      console.error('JSON verisi işlenirken bir hata oluştu:', error);
+      console.error('Error processing JSON data:', error);
     }
   } else {
-    console.error('JSON verisi bulunamadı. Lütfen sheetToJson.js dosyasının doğru çalıştığından emin olun.');
-    document.getElementById('questionCount').innerText = 'Soru sayısı: Veri bulunamadı!';
+    console.error('JSON data not found. Please ensure sheetToJson.js is working correctly.');
+    document.getElementById('questionCount').innerText = 'Number of questions: Data not found!';
   }
 });
 
-// Quiz başlatma işlemi
+// Start quiz process
 document.getElementById('startQuiz').addEventListener('click', function () {
   const startInput = document.getElementById('startQuestion').value;
   const endInput = document.getElementById('endQuestion').value;
-  const start = parseInt(startInput) - 1; // Kullanıcı girişini dizinlere uyarlama
+  const start = parseInt(startInput) - 1; // Adjust user input to indices
   const end = parseInt(endInput);
 
   if (isNaN(start) || isNaN(end) || start < 0 || end > quizData.length || start >= end) {
-    alert('Lütfen geçerli bir başlangıç ve bitiş değeri giriniz.');
+    alert('Please enter a valid start and end value.');
     return;
   }
 
-  // Seçilen aralığı localStorage'a kaydet
+  // Save selected range to localStorage
   localStorage.setItem('startQuestion', start);
   localStorage.setItem('endQuestion', end);
 
-  // Seçilen soruları localStorage'a kaydet
+  // Save selected questions to localStorage
   const selectedQuizData = quizData.slice(start, end);
   localStorage.setItem('selectedQuizData', JSON.stringify(selectedQuizData));
 
-  window.location.href = 'askQuestion.html'; // Soru sorma sayfasına yönlendirme
+  window.location.href = 'askQuestion.html'; // Redirect to question asking page
 });

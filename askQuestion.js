@@ -4,7 +4,7 @@ let selectedQuizData = [];
 let currentQuestion = 0;
 let score = 0;
 let incorrectAnswers = [];
-let previousAnswers = []; // Önceki cevapları saklamak için
+let previousAnswers = []; // To store previous answers
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -48,7 +48,7 @@ function displayQuestion() {
   quizContainer.appendChild(questionElement);
   quizContainer.appendChild(optionsElement);
 
-  // Önceki cevabı işaretle
+  // Mark the previous answer
   if (previousAnswers[currentQuestion]) {
     const selectedOption = document.querySelector(`input[name="quiz"][value="${previousAnswers[currentQuestion]}"]`);
     if (selectedOption) {
@@ -56,15 +56,15 @@ function displayQuestion() {
     }
   }
 
-  // Soru sırasını güncelle
+  // Update question number
   const questionNumberElement = document.getElementById('questionNumber');
-  questionNumberElement.innerText = `Soru sırası: ${currentQuestion + 1}/${selectedQuizData.length}`;
+  questionNumberElement.innerText = `Question number: ${currentQuestion + 1}/${selectedQuizData.length}`;
 }
 
 function startQuiz() {
-  const quizData = JSON.parse(localStorage.getItem('selectedQuizData')); // selectQuestion.js'den gelen sorular
+  const quizData = JSON.parse(localStorage.getItem('selectedQuizData')); // Questions from selectQuestion.js
   if (!quizData || quizData.length === 0) {
-    alert('Quiz için herhangi bir soru seçilmedi.');
+    alert('No questions selected for the quiz.');
     window.location.href = 'selectQuestion.html';
     return;
   }
@@ -84,7 +84,7 @@ function checkAnswer() {
   const selectedOption = document.querySelector('input[name="quiz"]:checked');
   if (selectedOption) {
     const answer = selectedOption.value;
-    previousAnswers[currentQuestion] = answer; // Cevabı sakla
+    previousAnswers[currentQuestion] = answer; // Store the answer
     if (answer === selectedQuizData[currentQuestion].answer) {
       score++;
     } else {
@@ -118,20 +118,20 @@ function displayResult() {
   document.getElementById('previous').style.display = 'none';
   resultContainer.innerHTML = `You scored ${score} out of ${selectedQuizData.length}!`;
 
-  // "Show Answer" ve "Çıkış" butonlarını görünür ve aktif yap
+  // Make "Show Answer" and "Exit" buttons visible and active
   document.getElementById('showAnswer').classList.remove('hide');
   document.getElementById('exit').classList.remove('hide');
 }
 
 function showAnswers() {
   const incorrectAnswersContainer = document.getElementById('incorrectAnswers');
-  incorrectAnswersContainer.innerHTML = '<h2>Yanlış Cevaplar:</h2>';
+  incorrectAnswersContainer.innerHTML = '<h2>Incorrect Answers:</h2>';
   incorrectAnswers.forEach(answer => {
     const answerElement = document.createElement('div');
     answerElement.innerHTML = `
-      <p><strong>Soru:</strong> ${answer.question}</p>
-      <p><strong>Verilen Yanıt:</strong> ${answer.incorrectAnswer}</p>
-      <p><strong>Doğru Yanıt:</strong> ${answer.correctAnswer}</p>
+      <p><strong>Question:</strong> ${answer.question}</p>
+      <p><strong>Given Answer:</strong> ${answer.incorrectAnswer}</p>
+      <p><strong>Correct Answer:</strong> ${answer.correctAnswer}</p>
       <hr>
     `;
     incorrectAnswersContainer.appendChild(answerElement);
@@ -148,4 +148,4 @@ document.getElementById('previous').addEventListener('click', showPreviousQuesti
 document.getElementById('showAnswer').addEventListener('click', showAnswers);
 document.getElementById('exit').addEventListener('click', exitQuiz);
 
-startQuiz(); // Quiz'i başlat
+startQuiz(); // Start the quiz
