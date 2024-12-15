@@ -121,6 +121,7 @@ function displayResult() {
   // Make "Show Answer" and "Exit" buttons visible and active
   document.getElementById('showAnswer').classList.remove('hide');
   document.getElementById('exit').classList.remove('hide');
+  document.getElementById('selectQuestionPage').classList.remove('hide');
 }
 
 function showAnswers() {
@@ -142,10 +143,12 @@ function showAnswers() {
 function exitQuiz() {
   window.location.href = 'index.html';
 }
-
+function goSelectQuestionPage() {
+  window.location.href = 'selectQuestion.html';
+}
 document.getElementById('submit').addEventListener('click', checkAnswer);
 document.getElementById('previous').addEventListener('click', showPreviousQuestion);
 document.getElementById('showAnswer').addEventListener('click', showAnswers);
 document.getElementById('exit').addEventListener('click', exitQuiz);
-
+document.getElementById('selectQuestionPage').addEventListener('click', goSelectQuestionPage);
 startQuiz(); // Start the quiz
