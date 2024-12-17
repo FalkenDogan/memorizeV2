@@ -4,37 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memorize Quiz App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: #fff;
+      padding: 40px 60px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
     }
     .hidden {
       display: none;
-        }
-        h1 {
+    }
+    h1 {
       font-size: 2.5em;
-        }
-        label, input, button {
+      margin-bottom: 20px;
+      color: #4CAF50;
+    }
+    label {
       font-size: 1.2em;
-        }
-      </style>
-    </head>
-    <body>
-
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center;">
-        <div>
-        <h1>Welcome to Memorize App</h1>
-        <!-- Form to get Google Sheets link from the user -->
-        <div id="link-form">
-        <label for="sheet-link">Insert Google Sheets Link</label><br>
-        <input type="text" id="sheet-link" placeholder="https://docs.google.com/spreadsheets/d/...">
-        <br>
-        <br>
-        <button id="generate-json">Send</button>
-        </div>
+      margin-bottom: 10px;
+      display: block;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px 25px;
+      font-size: 1.2em;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .form-container {
+      max-width: 400px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to Memorize App</h1>
+    <!-- Form to get Google Sheets link from the user -->
+    <div id="link-form" class="form-container">
+      <label for="sheet-link">Insert Google Sheets Link</label>
+      <input type="text" id="sheet-link" placeholder="https://docs.google.com/spreadsheets/d/...">
+      <button id="generate-json">Send</button>
     </div>
-</div>
+  </div>
   <script src="index_sheetToJson.js"></script>
 </body>
 </html>
