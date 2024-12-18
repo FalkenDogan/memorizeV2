@@ -23,7 +23,7 @@ async function fetchGoogleSheetData(sheetUrl) {
   // Convert CSV to JSON format
   const rows = csvData.split('\n');
   return rows.slice(1).map(row => {
-    const [ColumnA, ColumnB] = row.split(',#,');
+    const [ColumnA, ColumnB] = row.split(',|,');
     return { ColumnA: ColumnA?.trim(), ColumnB: ColumnB?.trim() };
   });
 }
