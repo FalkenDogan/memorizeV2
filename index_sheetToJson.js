@@ -1,16 +1,23 @@
 // Process the link provided by the user
 function convertToCsvLink(sheetUrl) {
-  const regex = /https:\/\/docs\.google\.com\/spreadsheets\/d\/([a-zA-Z0-9-_]+)\/.*gid=([0-9]+)/;
-  const match = sheetUrl.match(regex);
-
-  if (match) {
-    const sheetId = match[1];
-    const gid = match[2];
-    return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
-  } else {
-    throw new Error('Geçersiz Google Sheets linki. Lütfen tam linki girin (gid parametresi ile).');
+  const regexWithGid = /https:\/\/docs\.google\.com\/spreadsheets\/d\/([a-zA-Z0-9-_]+)\/.*gid=([0-9]+)/;
+  const regexWithUsp = /https:\/\/docs\.google\.com\/spreadsheets\/d\/([a-zA-Z0-9-_]+)\/edit\?usp=drivesdk/;
+  const matchWithUsp = sheetUrl.match(regexWithUsp);
+  if (matchWithUsp) {
+    const sheetId = matchWithUsp[1];
+    return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=0`;
   }
+
+ const matchWithGid = sheetUrl.match(regexWithGid);
+  if (matchWithGid) {
+    const sheetId = matchWithGid[1];
+    const gid = matchWithGid[2];
+    return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
+  }
+
+  throw new Error('Geçersiz Google Sheets linki. Lütfen tam linki girin.');
 }
+
 
 // Fetch CSV data from Google Sheets and convert it to JSON
 async function fetchGoogleSheetData(sheetUrl) {
