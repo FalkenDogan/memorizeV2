@@ -5,110 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz App</title>
   <link rel="stylesheet" href="styles.css">
-  <style>
-body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f5f5f5;
-  color: #333;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100vh;
-}
-
-.container {
-  width: 90%; /* Oransal genişlik */
-  max-width: 400px; /* Maksimum genişlik */
-  padding: 20px; /* Mobil uyumlu boşluklar */
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  margin: 20px auto;
-}
-
-h1 {
-  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ekrana göre değişen başlık boyutu */
-  margin-bottom: 20px;
-  color: #4CAF50;
-}
-
-label {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  display: block;
-}
-
-input[type="text"] {
-  width: 100%;
-  max-width: 300px;
-  padding: 10px;
-  font-size: 1em;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-.footer-links {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.footer-links a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #4CAF50;
-  font-size: 1em;
-  margin-bottom: 10px;
-}
-
-.footer-links img {
-  margin-right: 8px;
-  width: 24px;
-  height: 24px;
-}
-
-@media (max-width: 768px) {
-  h1 {
-    font-size: 1.8em;
-  }
-  button {
-    font-size: 1em;
-  }
-  .container {
-    padding: 10px;
-  }
-}
-
-  </style>
-</head>
+ </head>
 <body>
-  <div class="container">
+  <div class="container" style="text-align: center;">
     <h1>Welcome to Quiz App</h1>
     <!-- Form to get Google Sheets link from the user -->
     <div id="link-form">
       <label for="sheet-link">Insert Google Sheets Link</label><br>
       <input type="text" id="sheet-link" placeholder="https://docs.google.com/spreadsheets/d/...">
       <br>
-      <button id="generate-json">Send</button>
+      <button id="generate-json" class="button">Send</button>
     </div>
   
    <!-- Footer Links (Çerçevenin dışında) -->

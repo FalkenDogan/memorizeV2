@@ -4,50 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz App User Guide</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            background-color: #fff;
-            padding: 40px 60px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 800px;
-            margin: 20px auto;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #4CAF50;
-            text-align: center;
-        }
-        h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        p {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        ul {
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <div class="container">
-        <h1>Quiz App User Guide</h1>
-        <h2>Introduction</h2>
+<body class="usage_body">
+    <div class="usage_container">
+        <h1 class="usage_h1">Quiz App User Guide</h1>
+        <h2 class="usage_h2">Introduction</h2>
         <p>Quiz App is an application that helps you easily create quizzes using Google Sheets. This guide explains step-by-step how to use it.</p>
         
         <h2>Step 1: Prepare Google Sheets</h2>
@@ -64,7 +26,7 @@
         <ul>
             <li>Open your Google Sheets document.</li>
             <li>Click the "Share" button in the top right corner and select "Copy link".</li>
-            <li>Make sure the link contains the <code>gid</code> parameter (e.g., <code>https://docs.google.com/spreadsheets/d/1aBcD.../edit#gid=0</code>).</li>
+            <li>Make sure the link contains the <strong>gid</strong> parameter (e.g., <strong>https://docs.google.com/spreadsheets/d/1aBcD.../edit?gid=1917887240#gid=1917887240</strong>).</li>
         </ul>
         
         <h2>Step 3: Use the Quiz App Application</h2>
@@ -100,6 +62,9 @@
         <ul>
             <li>Make sure to set the sharing settings of your Google Sheets document to "Anyone with the link".</li>
             <li>Ensure that the questions and answers are in the correct columns.</li>
+            <li>Google Sheets links may generate different 'gid' numbers on computer browsers compared to smartphone and tablet applications.</li>
+            <li>If you are getting the link from the Google Drive or Google Sheets app on a smartphone or tablet, create the list only on the first tab of the Google Sheet and get the link.</li>
+            <li>If you are getting the link from a browser on a computer, you can create lists on each tab and use the links of the tabs separately.</li>
         </ul>
     </div>
 </body>
