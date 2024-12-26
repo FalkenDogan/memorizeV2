@@ -9,22 +9,29 @@ body {
   background-attachment: fixed;
   font-size: 1em;
 }
+
 .container {
-  width: 90%; 
+  width: 90%;
   max-width: 400px;
-  padding: 40px; 
+  padding: 40px;
   border-radius: 10px;
   background-color: #e0d9d9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  margin: auto; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
+.logo {
+  width: 100px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
 h1 {
-  font-size: clamp(3rem, 8vw, 4rem); 
+  font-size: clamp(3rem, 8vw, 4rem);
   margin-bottom: 20px;
   color: #4CAF50;
   text-align: center;
@@ -90,20 +97,24 @@ input[type="text"] {
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
 /* askQuestion.html*/
 .button-container {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
   margin-top: 20px;
-}  
-.hide{
+}
+
+.hide {
   display: none;
 }
+
 .incorrect-answers {
   margin-top: 20px;
   text-align: left;
 }
+
 .question {
   font-weight: bold;
   margin-bottom: 10px;
@@ -138,6 +149,7 @@ input[type="number"] {
   margin: 0;
   padding: 20px;
 }
+
 .usage_container {
   background-color: #fff;
   padding: 40px 60px;
@@ -146,25 +158,30 @@ input[type="number"] {
   max-width: 800px;
   margin: 20px auto;
 }
+
 .usage_h1 {
   font-size: 2.5em;
   margin-bottom: 20px;
   color: #4CAF50;
   text-align: center;
 }
+
 h2 {
   font-size: 1.5em;
   margin-bottom: 10px;
   color: #333;
 }
+
 p {
   font-size: 1.2em;
   margin-bottom: 20px;
 }
+
 ul {
   font-size: 1.2em;
   margin-bottom: 20px;
 }
+
 li {
   margin-bottom: 10px;
 }

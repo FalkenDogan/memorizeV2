@@ -8,7 +8,7 @@ function convertToCsvLink(sheetUrl) {
     return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=0`;
   }
 
- const matchWithGid = sheetUrl.match(regexWithGid);
+  const matchWithGid = sheetUrl.match(regexWithGid);
   if (matchWithGid) {
     const sheetId = matchWithGid[1];
     const gid = matchWithGid[2];
