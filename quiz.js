@@ -1,4 +1,4 @@
-//askQuestion.js
+//quiz.js
 
 let selectedQuizData = [];
 let currentQuestion = 0;

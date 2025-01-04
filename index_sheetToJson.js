@@ -18,7 +18,6 @@ function convertToCsvLink(sheetUrl) {
   throw new Error('Geçersiz Google Sheets linki. Lütfen tam linki girin.');
 }
 
-
 // Fetch CSV data from Google Sheets and convert it to JSON
 async function fetchGoogleSheetData(sheetUrl) {
   const response = await fetch(sheetUrl);
