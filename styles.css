@@ -8,6 +8,11 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-size: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
 .container {

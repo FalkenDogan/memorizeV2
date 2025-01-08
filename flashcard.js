@@ -17,8 +17,8 @@ function displayQuestion() {
   const questionData = selectedQuizData[currentQuestion];
   quizContainer.innerHTML = `
     <div class="flashcard" onclick="flipCard()">
-      <div class="front">${questionData.question}</div>
-      <div class="back">${questionData.answer}</div>
+      <div class="front" style="overflow-y: auto; max-height: 200px; display: flex; align-items: flex-start;">${questionData.question}</div>
+      <div class="back" style="overflow-y: auto; max-height: 200px; display: flex; align-items: flex-start;">${questionData.answer}</div>
     </div>
   `;
 
