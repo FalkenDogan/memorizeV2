@@ -127,6 +127,8 @@ function displayResult() {
 function showAnswers() {
   const incorrectAnswersContainer = document.getElementById('incorrectAnswers');
   incorrectAnswersContainer.innerHTML = '<h2>Incorrect Answers:</h2>';
+  incorrectAnswersContainer.style.overflowY = 'auto';
+  incorrectAnswersContainer.style.maxHeight = '500px';
   incorrectAnswers.forEach(answer => {
     const answerElement = document.createElement('div');
     answerElement.innerHTML = `
