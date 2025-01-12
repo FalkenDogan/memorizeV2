@@ -62,3 +62,8 @@ document.getElementById('startFlashcard').addEventListener('click', function () 
 
   window.location.href = 'flashcard.html'; // Redirect to flashcard page
 });
+// Close the window
+document.getElementById('closeButton').addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
+
