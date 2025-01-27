@@ -78,6 +78,7 @@ function generateQuiz(inputList) {
 // Process user input to create a quiz and redirect to the next page
 document.getElementById('generate-json').addEventListener('click', async () => {
   const sheetLink = document.getElementById('sheet-link').value;
+
   try {
     // Convert Google Sheets data to JSON
     const csvLink = convertToCsvLink(sheetLink);
