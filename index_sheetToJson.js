@@ -29,7 +29,7 @@ async function fetchGoogleSheetData(sheetUrl) {
   // Convert CSV to JSON format
   const rows = csvData.split('\n');
   return rows.slice(1).map(row => {
-    const [ColumnA, ColumnB] = row.split(',|,');
+    const [ColumnA, ColumnB] = row.split(',');
     return { ColumnA: ColumnA?.trim(), ColumnB: ColumnB?.trim() };
   });
 }
@@ -75,10 +75,8 @@ function generateQuiz(inputList) {
   return quizData;
 }
 
-// Process user input to create a quiz and redirect to the next page
-document.getElementById('generate-json').addEventListener('click', async () => {
-  const sheetLink = document.getElementById('sheet-link').value;
-
+// Function to handle button clicks
+async function handleButtonClick(sheetLink) {
   try {
     // Convert Google Sheets data to JSON
     const csvLink = convertToCsvLink(sheetLink);
@@ -96,4 +94,12 @@ document.getElementById('generate-json').addEventListener('click', async () => {
     alert(`Hata: ${error.message}`);
     console.error('Hata:', error);
   }
+}
+
+// Add event listeners to all buttons
+document.querySelectorAll('button[data-link]').forEach(button => {
+  button.addEventListener('click', () => {
+    const sheetLink = button.getAttribute('data-link');
+    handleButtonClick(sheetLink);
+  });
 });
