@@ -81,7 +81,17 @@ document.getElementById('generate-json').addEventListener('click', async () => {
   try {
     // Convert Google Sheets data to JSON
     const csvLink = convertToCsvLink(sheetLink);
-@@ -96,4 +94,12 @@
+    const jsonData = await fetchGoogleSheetData(csvLink);
+
+    // Generate quiz data
+    const quizData = generateQuiz(jsonData);
+
+    // Save JSON data to localStorage
+    localStorage.setItem('quizData', JSON.stringify(quizData));
+
+    // Redirect the user to the Quiz page
+    window.location.href = 'selectQuestion.html';
+  } catch (error) {
     alert(`Hata: ${error.message}`);
     console.error('Hata:', error);
   }
