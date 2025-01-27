@@ -29,7 +29,7 @@ async function fetchGoogleSheetData(sheetUrl) {
   // Convert CSV to JSON format
   const rows = csvData.split('\n');
   return rows.slice(1).map(row => {
-    const [ColumnA, ColumnB] = row.split(',');
+    const [ColumnA, ColumnB] = row.split(',|,');
     return { ColumnA: ColumnA?.trim(), ColumnB: ColumnB?.trim() };
   });
 }
@@ -75,31 +75,14 @@ function generateQuiz(inputList) {
   return quizData;
 }
 
-// Function to handle button clicks
-async function handleButtonClick(sheetLink) {
+// Process user input to create a quiz and redirect to the next page
+document.getElementById('generate-json').addEventListener('click', async () => {
+  const sheetLink = document.getElementById('sheet-link').value;
   try {
     // Convert Google Sheets data to JSON
     const csvLink = convertToCsvLink(sheetLink);
-    const jsonData = await fetchGoogleSheetData(csvLink);
-
-    // Generate quiz data
-    const quizData = generateQuiz(jsonData);
-
-    // Save JSON data to localStorage
-    localStorage.setItem('quizData', JSON.stringify(quizData));
-
-    // Redirect the user to the Quiz page
-    window.location.href = 'selectQuestion.html';
-  } catch (error) {
+@@ -96,4 +94,12 @@
     alert(`Hata: ${error.message}`);
     console.error('Hata:', error);
   }
-}
-
-// Add event listeners to all buttons
-document.querySelectorAll('button[data-link]').forEach(button => {
-  button.addEventListener('click', () => {
-    const sheetLink = button.getAttribute('data-link');
-    handleButtonClick(sheetLink);
-  });
 });
