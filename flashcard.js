@@ -17,8 +17,8 @@ function displayQuestion() {
   const questionData = selectedQuizData[currentQuestion];
   quizContainer.innerHTML = `
     <div class="flashcard" onclick="flipCard()">
-      <div class="front" style="overflow-y: auto; display: flex; align-items: flex-start; justify-content: center;">${questionData.question}</div>
-      <div class="back" style="overflow-y: auto; display: flex; align-items: flex-start; justify-content: center;">${questionData.answer}</div>
+      <div class="front" style="overflow-y: auto; max-height: 200px; display: flex; align-items: flex-start;">${questionData.question}</div>
+      <div class="back" style="overflow-y: auto; max-height: 200px; display: flex; align-items: flex-start;">${questionData.answer}</div>
     </div>
   `;
 
@@ -90,8 +90,4 @@ document.getElementById('submit').addEventListener('click', checkAnswer);
 document.getElementById('previous').addEventListener('click', showPreviousQuestion);
 document.getElementById('exit').addEventListener('click', exitQuiz);
 document.getElementById('selectQuestionPage').addEventListener('click', goSelectQuestionPage);
-// Close the window
-document.getElementById('closeButton').addEventListener('click', () => {
-  window.location.href = 'index.html';
-});
 startQuiz(); // Start the quiz
